@@ -33,5 +33,5 @@ IPV6INIT=yes
 ```
 systemctl restart network
 ```
-## 3.测试
+## 4.测试
 用shell直接ping前面设置的固定IP即可知道配置是否生效。
