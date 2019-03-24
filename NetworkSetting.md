@@ -1,7 +1,10 @@
 # setting centos7 network
 在虚拟机中配置Centos7网络，设置固定IP的方法如下：
 
-## 1.修改网络配置文件
+## 1.设置虚拟机
+将网络适配器设置为桥接模式。
+
+## 2.修改网络配置文件
 ```
 cd /etc/sysconfig/network-scripts
 vim ifcfg-eno33
@@ -26,9 +29,9 @@ PEERROUTES=yes
 IPV4_FAILURE_FATAL=yes
 IPV6INIT=yes
 ```
-## 2.重启网络服务
+## 3.重启网络服务
 ```
-service network restart
+systemctl restart network
 ```
 ## 3.测试
 用shell直接ping前面设置的固定IP即可知道配置是否生效。
