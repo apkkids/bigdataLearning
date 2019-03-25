@@ -27,7 +27,7 @@ rpm -ql java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64/jre/lib/amd64/libjsoundalsa.so
 
 mkdir /usr/java
-ln -s /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64/ /usr/java/latest
+ln -s /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64/jre/ /usr/java/latest
 ```
 至此将/usr/java/latest指向最新的jdk目录。
 
