@@ -33,3 +33,30 @@ yum makecache
 yum update
 ```
 依次执行上述三条命令即配置完毕。
+
+## yum相关命令
+### yum检测安装
+1、首先安装一个redis
+```
+yum install redis
+```
+2、查找redis的安装包
+```
+rpm -qa|grep redis
+redis-3.2.10-2.el7.x86_64
+```
+3、查找安装包的安装路径
+```
+rpm -ql redis-3.2.10-2.el7.x86_64
+/etc/logrotate.d/redis
+/etc/redis-sentinel.conf
+/etc/redis.conf
+/etc/systemd/system/redis-sentinel.service.d
+/etc/systemd/system/redis-sentinel.service.d/limit.conf
+/etc/systemd/system/redis.service.d
+/etc/systemd/system/redis.service.d/limit.conf
+/usr/bin/redis-benchmark
+/usr/bin/redis-check-aof
+/usr/bin/redis-check-rdb
+/usr/bin/redis-cli
+```
