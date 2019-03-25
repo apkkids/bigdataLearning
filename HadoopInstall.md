@@ -2,7 +2,7 @@
 安装配置单节点Hadoop
 ## 1.检测所需的软件是否安装
 ```
-rpm -qa|grep jave
+rpm -qa|grep java
 rpm -qa|grep ssh
 rpm -qa|grep rsync
 ```
