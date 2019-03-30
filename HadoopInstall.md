@@ -14,7 +14,7 @@ cd /opt
 wget https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.1.2/hadoop-3.1.2.tar.gz
 tar xzvf hadoop-3.1.2.tar.gz
 ```
-## 3.设置
+## 3.设置jdk
 设置java home，检查jdk所在目录，建立软链接
 ```
 rpm -qa|grep jdk
@@ -41,6 +41,11 @@ export PATH=${JAVA_HOME}/bin:$PATH
 ```
 source /etc/profile
 ```
+## 修改hosts
+在/etc/hosts文件末尾加上
+yourhostname youipaddr
+
+## 修改hadoop-env.sh
 
 修改hadoop配置文件：etc/hadoop/hadoop-env.sh
 >
@@ -54,4 +59,6 @@ cd /opt/hadoop-3.1.2
 ./bin/hadoop
 ```
 正常输出hadoop命令帮助
+
+## 配置伪分布hadoop
 
