@@ -28,10 +28,6 @@ rpm -qa|grep openjdk
 java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
 
 rpm -ql java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
-/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64/jre/bin/policytool
-/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64/jre/lib/amd64/libawt_xawt.so
-/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64/jre/lib/amd64/libjawt.so
-/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64/jre/lib/amd64/libjsoundalsa.so
 
 mkdir /usr/java
 ln -s /usr/lib/jvm/java-1.8.0 /usr/java/latest
@@ -49,15 +45,19 @@ export PATH=${JAVA_HOME}/bin:$PATH
 ```
 source /etc/profile
 ```
-## 4.修改hosts
+## 4.修改hostname
+使用命令将hostname该为cent1
+```
+hostnamectl set-hostname cent1
+```
 在/etc/hosts文件末尾加上
 ```
-yourhostname youipaddr
+cent1 youipaddr
 ```
 在/etc/sysconfig/network加上
 ```
 NETWORKING=yes  
-HOSTNAME=node01 
+HOSTNAME=cent1 
 ```
 
 ## 5.配置伪分布hadoop
@@ -166,5 +166,41 @@ hadoop namenode -format
 ```
  Storage directory /opt/hadoop-3.1.2/data/dfs/name has been successfully formatted.
 ```
-### 6.2
+
+### 6.2 修改启动脚本
+直接执行start-all.sh 观察是否报错，如报错执行一下内容
+
+$ vim sbin/start-dfs.sh
+$ vim sbin/stop-dfs.sh
+
+在空白位置加入
+```
+HDFS_DATANODE_USER=root
+HADOOP_SECURE_DN_USER=hdfs
+HDFS_NAMENODE_USER=root
+HDFS_SECONDARYNAMENODE_USER=root
+```
+
+$ vim sbin/start-yarn.sh 
+$ vim sbin/stop-yarn.sh 
+
+在空白位置加入
+```
+YARN_RESOURCEMANAGER_USER=root
+HADOOP_SECURE_DN_USER=yarn
+YARN_NODEMANAGER_USER=root
+```
+
+### 6.3启动
+start-all.sh
+使用jps查看：输出如下内容表示启动成功
+```
+42384 Jps
+41315 SecondaryNameNode
+41891 NodeManager
+41013 DataNode
+40733 NameNode
+41678 ResourceManager
+```
+
 
