@@ -64,11 +64,11 @@ HOSTNAME=cent1
 ### 修改hadoop-env.sh
 
 修改hadoop配置文件：etc/hadoop/hadoop-env.sh
->
->  # The java implementation to use. By default, this environment
->  # variable is REQUIRED on ALL platforms except OS X!
->  export JAVA_HOME=/usr/java/latest
-
+```
+  # The java implementation to use. By default, this environment
+  # variable is REQUIRED on ALL platforms except OS X!
+  export JAVA_HOME=/usr/java/latest
+```
 测试hadoop：
 ```
 cd /opt/hadoop-3.1.2
