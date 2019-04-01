@@ -139,52 +139,53 @@ export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 ### 关闭防火墙
 查看防火墙状态
+```
 firewall-cmd --state
+```
 关闭防火墙
+```
 systemctl stop firewalld.service
 systemctl disable firewalld.service
+```
 
 ### 配置ssh免密登录
 1.创建ssh公钥/私钥，输入以下命令一路回车
+```
 ssh-keygen -t rsa
-
+```
 2.创建authorized_keys文件并修改权限为600
+```
 cd ~/.ssh
 touch authorized_keys
 chmod 600 authorized_keys
-
+```
 3.将公钥追加到authorized_keys文件中去
+```
 cat id_rsa.pub >> authorized_keys
-
+```
 4.测试是否能够ssh登录自己的主机cent1
+```
 ssh cent1
-
+```
 ## 6.操作hadoop
 ### 6.1格式化
+```
 hadoop namenode -format
+```
 输出中有下列信息表示成功
 ```
  Storage directory /opt/hadoop-3.1.2/data/dfs/name has been successfully formatted.
 ```
 
 ### 6.2 修改启动脚本
-直接执行start-all.sh 观察是否报错，如报错执行一下内容
-
-$ vim sbin/start-dfs.sh
-$ vim sbin/stop-dfs.sh
-
-在空白位置加入
+直接执行start-all.sh 观察是否报错，如报错则修改以下两个脚本：sbin/start-dfs.sh和sbin/stop-dfs.sh，在各自空白位置加入
 ```
 HDFS_DATANODE_USER=root
 HADOOP_SECURE_DN_USER=hdfs
 HDFS_NAMENODE_USER=root
 HDFS_SECONDARYNAMENODE_USER=root
 ```
-
-$ vim sbin/start-yarn.sh 
-$ vim sbin/stop-yarn.sh 
-
-在空白位置加入
+再修改sbin/start-yarn.sh和sbin/stop-yarn.sh，在空白位置加入
 ```
 YARN_RESOURCEMANAGER_USER=root
 HADOOP_SECURE_DN_USER=yarn
@@ -192,7 +193,9 @@ YARN_NODEMANAGER_USER=root
 ```
 
 ### 6.3启动
+```
 start-all.sh
+```
 使用jps查看：输出如下内容表示启动成功
 ```
 42384 Jps
