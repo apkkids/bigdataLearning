@@ -8,3 +8,4 @@ a record of bigdata learning
 ## 安装配置Hadoop
 [hadoop installation](https://github.com/apkkids/bigdataLearning/blob/master/HadoopInstall.md)
 
+[hadoop command](https://github.com/apkkids/bigdataLearning/blob/master/operateHadoop.md)
